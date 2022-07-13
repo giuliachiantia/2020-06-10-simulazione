@@ -17,6 +17,7 @@ import org.jgrapht.graph.SimpleWeightedGraph;
 import it.polito.tdp.imdb.db.ImdbDAO;
 
 public class Model {
+	//ha sim senza event
 	ImdbDAO dao;
 	Map<Integer, Actor> actorsIdMap;
 	Graph<Actor, DefaultWeightedEdge> graph;
@@ -35,6 +36,7 @@ public class Model {
 	public void createGraph(String genre) {
 		graph = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
 		Graphs.addAllVertices(graph, dao.getVerices(genre, actorsIdMap));
+		
 		
 		for(Adjacency adj : dao.getAdjacencies(genre, actorsIdMap)) {
 			if(graph.getEdge(adj.getA1(), adj.getA2()) == null) {
